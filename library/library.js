@@ -1,3 +1,4 @@
+// 檢查 object 共有幾層
 function checkLayers(_val,layers){
   let layersCount = 1
   function check(_val){
