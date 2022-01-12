@@ -1,9 +1,9 @@
 // 檢查 object 共有幾層
-function checkLayers(_val,layers){
+function checkLayers(_val, layers){
   let layersCount = 1
   function check(_val){
     Object.keys(_val).forEach(key=>{
-      if(typeof _val[key] === 'object'){
+      if(typeof _val[key] === 'object' && _val[key] !== null){
         layersCount+=1
         check(_val[key])
       }
