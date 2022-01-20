@@ -14,4 +14,5 @@ function checkLayers(_val, layers){
 }
 
 var b = {c:1,a:{a:{a:{a:1}}}}
+// test
 console.log(checkLayers(b,3))
