@@ -44,3 +44,4 @@ function clone(obj){
   return _obj;
 };
 const c = clone(a);
+
