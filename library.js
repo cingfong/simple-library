@@ -42,7 +42,7 @@ function clone(obj) {
 }
 const c = clone(a);
 
-// 處理多層物件轉成格式
+// 處理多層物件轉成格式(可再優化)
 let r = {};
 let m = {};
 function copyDeepObj(_data, valArr, deepArr, callbackArr) {
