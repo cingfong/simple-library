@@ -28,11 +28,9 @@ function clone(obj) {
   if (obj && typeof obj === "object") {
     for (key in obj) {
       if (obj.hasOwnProperty(key)) {
-        // 判断obj子元素是否为对象，如果是，递归复制
         if (obj[key] && typeof obj[key] === "object") {
           _obj[key] = clone(obj[key]);
         } else {
-          // 如果不是，简单复制
           _obj[key] = obj[key];
         }
       }
@@ -42,14 +40,16 @@ function clone(obj) {
 }
 const c = clone(a);
 
-// 處理多層物件轉成格式(可再優化)
+// 處理多層物件轉成格式
 let r = {};
 let m = {};
 function copyDeepObj(_data, valArr, deepArr, callbackArr) {
   if (!Array.isArray(valArr)) valArr = [valArr];
   if (!Array.isArray(deepArr)) deepArr = [deepArr];
   if (!Array.isArray(callbackArr)) callbackArr = [callbackArr];
+  if (_data.length < 1) throw 'Error the data is wrong';
   if (valArr.length < 1) throw "Error the value is wrong";
+  if (deepArr.length < 1) throw 'Error the deep is wrong'
 
   for (let key in _data) {
     valArr.forEach((valItem, index) => {
@@ -62,8 +62,8 @@ function copyDeepObj(_data, valArr, deepArr, callbackArr) {
           deepArr[index] - 1,
           callbackArr[index]
         );
-
       if (deepArr[index] === 0) {
+        if (typeof callbackArr[index] !== 'function') return
         valItem[key] = callbackArr[index](_data[key], key);
       }
     });
